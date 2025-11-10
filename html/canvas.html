@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivinhação</title>
+    <link rel="stylesheet" href="../style/style.css">
+</head>
+
+<body>
+    <header>
+        <nav class="menu">
+            <a href="../html/index.html">Home</a>
+            <a href="../html/projects.html">Projetos</a>
+        </nav>
+    </header>
+
+    <h1>Canvas</h1>
+    
+    <main class="canvas-container">
+        <canvas id="TelaCanvas" width="400" height="400"></canvas>
+    </main>
+
+    <script>
+        const c = document.getElementById("TelaCanvas");
+        const ctx = c.getContext("2d");
+
+        /*Funções construtoras*/
+        function draw_quadrado(x, y, tamanho, cor) {
+        ctx.fillStyle = cor;
+        ctx.fillRect(x, y, tamanho, tamanho);
+        }
+
+        function draw_linha(x1, y1, x2, y2, cor, grossura = 1) {
+        ctx.strokeStyle = cor;
+        ctx.lineWidth = grossura;
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
+        }
+
+        function draw_arco(x, y, raio, inicio, fim, cor, preenchimento = false) {
+        ctx.beginPath();
+        ctx.arc(x, y, raio, inicio, fim);
+        if (preenchimento) {
+            ctx.fillStyle = cor;
+            ctx.fill();
+        } else {
+            ctx.strokeStyle = cor;
+            ctx.stroke();
+        }
+        }
+
+        function write(texto, x, y, cor, tamanho = "16px") {
+        ctx.fillStyle = cor;
+        ctx.font = `${tamanho} Arial`;
+        ctx.fillText(texto, x, y);
+        }
+
+        //Desenho
+        function draw_figura1() {
+        draw_quadrado(0, 0, 800, "white");
+        draw_quadrado(0, 0, 70, "blue");
+        draw_quadrado(330, 0, 70, "red");
+        draw_quadrado(0, 360, 40, "yellow");
+        draw_quadrado(0, 320, 40, "yellow");
+        draw_quadrado(40, 360, 40, "yellow");
+        draw_quadrado(320, 360, 40, "black");
+        draw_quadrado(360, 360, 40, "black");
+        draw_quadrado(360, 320, 40, "black");
+        draw_quadrado(150, 200, 50, "red");
+        draw_quadrado(0, 160, 40, "cyan");
+        draw_quadrado(0, 200, 40, "cyan");
+        draw_quadrado(360, 180, 40, "cyan");
+
+        draw_linha(0, 200, 400, 200, "green", 1);
+        draw_linha(200, 200, 200, 400, "black", 1);
+        draw_linha(60, 60, 200, 200, "blue", 1);
+        draw_linha(400, 0, 200, 200, "red", 1);
+
+        draw_arco(200, 200, 70, Math.PI, 2 * Math.PI, "green");
+        draw_arco(200, 400, 50, Math.PI, 2 * Math.PI, "green");
+        draw_arco(200, 400, 100, Math.PI, 1.5 * Math.PI, "green");
+        draw_arco(200, 400, 75, 1.5 * Math.PI, Math.PI, "green");
+        draw_arco(200, 400, 50, Math.PI, 2 * Math.PI, "cyan", true);
+
+
+        write("Canvas", 150, 70, "black", "24px");
+        }
+
+        draw_figura1();
+    </script>
+</body>
+</html>
