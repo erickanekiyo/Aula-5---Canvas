@@ -100,6 +100,11 @@ a:hover {
 }
 
 /*Canvas*/
+canvas {
+    display: block;
+    margin: 20px auto;
+}
+
 .canvas-container {
     display: flex;
     flex-direction: column;
